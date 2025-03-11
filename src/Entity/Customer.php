@@ -20,19 +20,16 @@ use Doctrine\ORM\Mapping as ORM;
             name: "create",               // Create Customer
             description: "Create a new customer", 
             input: CustomerInput::class,           // Input class for the mutation
-            output: Customer::class,               // Output class (the Customer entity)
         ),
         new Mutation(
             name: "update",               // Update Customer by id 
             description: "Update a new customer",  
             input: CustomerInput::class,           // Input class for the mutation
-            output: Customer::class,               // Output class (the Customer entity)
         ),
         new Mutation(
             name: "update",               // Update Author by id 
             description: "Update a customer",  
-            input: AuthorInput::class,           // Input class for the mutation
-            output: Author::class,               // Output class (the Author entity)
+            input: CustomerInput::class,           // Input class for the mutation
         ),
         new Mutation(
             name: "delete",

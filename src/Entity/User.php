@@ -4,15 +4,35 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GraphQl\QueryCollection;
+use ApiPlatform\Metadata\GraphQl\Mutation;
 use App\Repository\UserRepository;
+use App\Entity\UserInput;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[ApiResource(
     graphQlOperations: [
-        // new Query(name: "item"),       # Fetch a single user by ID
         new QueryCollection(name: "collection_query"), # Fetch all users
+        new Mutation(
+            name: "create",               // Create Customer
+            description: "Create a new user", 
+            input: UserInput::class,           // Input class for the mutation
+        ),
+        new Mutation(
+            name: "update",               // Update Customer by id 
+            description: "Update a new user",  
+            input: UserInput::class,           // Input class for the mutation
+        ),
+        new Mutation(
+            name: "update",               // Update Author by id 
+            description: "Update an user",  
+            input: UserInput::class,           // Input class for the mutation
+        ),
+        new Mutation(
+            name: "delete",
+            description: "Delete an user",
+        ),
     ]
 
 )]
