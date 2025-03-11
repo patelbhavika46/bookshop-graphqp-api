@@ -40,24 +40,34 @@ DATABASE_URL="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=16&ch
 symfony console doctrine:database:create
 ```
 
-5. **Run migrations:**
+5. **Start Docker (Optional):**
+start docker with below command:
+```bash
+docker-compose up -d
+```
+stop docker with below command:
+```bash
+docker-compose down 
+```
+
+6. **Run migrations:**
 ```bash 
 symfony console doctrine:migrations:migrate
 ```
 
-6. **Start the Symfony server (optional):**
+7. **Start the Symfony server (optional):**
 ```bash
 symfony server:start
 ```
 
-7. **Clear Cache (if needed):**
+8. **Clear Cache (if needed):**
 ```bash
 symfony console cache:clear 
 		 or
 php bin/console cache:clear
 ```
 
-8. **Testing GraphQL API**
+9. **Testing GraphQL API**
 reference queries to test api
 
 [GraphQL API Documentation](docs/graphql.md)
