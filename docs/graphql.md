@@ -1,6 +1,6 @@
 # GraphQL API Documentation
 
-## Query: Get All Authors
+### Query: Get All Authors
 ```graphql
 query GetAuthors {
   authors {
