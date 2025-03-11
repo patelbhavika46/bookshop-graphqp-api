@@ -52,10 +52,12 @@ symfony server:start
 
 7. **Clear Cache (if needed):**
 ```bash
-symfony console cache:clear  or
+symfony console cache:clear 
+		 or
 php bin/console cache:clear
 ```
 
 8. **Testing GraphQL API**
 reference queries to test api
-####[GraphQL API Documentation](docs/graphql.md)
+
+[GraphQL API Documentation](docs/graphql.md)
