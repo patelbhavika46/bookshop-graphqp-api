@@ -1,6 +1,7 @@
 # GraphQL API Documentation
 
-## Query: Get All Authors
+## Authors
+#### Query: Get All Authors
 ```graphql
 query GetAuthors {
   authors {
@@ -21,7 +22,7 @@ query GetAuthors {
   }
 }
 ```
-## Query: Create Author
+#### Query: Create Author
 ```graphql
 mutation CreateAuthor($firstName: String!, $lastName: String!) {
   createAuthor(input: {firstName: $firstName, lastName: $lastName}) {
@@ -39,7 +40,7 @@ mutation CreateAuthor($firstName: String!, $lastName: String!) {
   "lastName": "Doe"
 }
 ```
-## Query: Update Author
+#### Query: Update Author
 graphqp```
 mutation UpdateAuthor($id: ID!, $firstName: String!, $lastName: String!, $clientMutationId: String!) {
   updateAuthor(input: {id: $id, firstName: $firstName, lastName: $lastName, clientMutationId: $clientMutationId}) {
@@ -60,7 +61,7 @@ mutation UpdateAuthor($id: ID!, $firstName: String!, $lastName: String!, $client
   "clientMutationId": "123456"
 }
 ```
-## Query: Delete Author
+#### Query: Delete Author
 ```graphql
 mutation DeleteAuthor($id: ID!) {
   deleteAuthor(input: {id: $id}) {
@@ -73,4 +74,43 @@ mutation DeleteAuthor($id: ID!) {
   "id": "/api/authors/2"
 }
 ```
-
+## Customer
+#### Query: Get Customers
+```graphql
+query GetCustomer {
+  customers {
+    edges {
+      node {
+        id
+        firstName
+        lastName
+        purchases {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+#### Query: Create Customer
+```graphql
+mutation CreateCustomer($firstName: String!, $lastName: String!) {
+  createCustomer(input: {firstName: $firstName, lastName: $lastName}) {
+    clientMutationId
+    customer {
+      firstName
+      lastName
+    }
+  }
+}
+```
+```variables
+{
+  "firstName": "Alex",
+  "lastName": "Doe"
+}
+```
