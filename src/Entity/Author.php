@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GraphQl\QueryCollection;
+use ApiPlatform\Metadata\GraphQl\Mutation;
 use App\Repository\AuthorRepository;
+use App\GraphQL\AuthorInput;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,6 +16,12 @@ use Doctrine\ORM\Mapping as ORM;
     graphQlOperations: [
         new QueryCollection(name: "item"), # Fetch singal Author by id
         new QueryCollection(name: "collection_query"), # Fetch all Author
+        new Mutation(
+            name: "create",               // Mutation name
+            description: "Create a new author",  // Mutation description
+            input: AuthorInput::class,           // Input class for the mutation
+            output: Author::class,               // Output class (the Author entity)
+        )
     ]
 
 )]
