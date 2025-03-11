@@ -17,10 +17,18 @@ use Doctrine\ORM\Mapping as ORM;
         new QueryCollection(name: "item"), # Fetch singal Author by id
         new QueryCollection(name: "collection_query"), # Fetch all Author
         new Mutation(
-            name: "create",               // Mutation name
-            description: "Create a new author",  // Mutation description
+            name: "create",               // Create Author
+            description: "Create an author", 
             input: AuthorInput::class,           // Input class for the mutation
-            output: Author::class,               // Output class (the Author entity)
+        ),
+        new Mutation(
+            name: "update",               // Update Author by id 
+            description: "Update an author",  
+            input: AuthorInput::class,           // Input class for the mutation
+        ),
+        new Mutation(
+            name: "delete",               // Delete Author by id 
+            description: "Delete an author",
         )
     ]
 

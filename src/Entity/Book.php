@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 #[ApiResource(
     graphQlOperations: [
+        new QueryCollection(name: "item"),       # Fetch a single Book by ID
         new QueryCollection(name: "collection_query"), # Fetch all Book
     ]
 

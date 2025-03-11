@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GraphQl\QueryCollection;
+use ApiPlatform\Metadata\GraphQl\Mutation;
 use App\Repository\CustomerRepository;
+use App\GraphQL\CustomerInput;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,8 +14,30 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
 #[ApiResource(
     graphQlOperations: [
-        new QueryCollection(name: "item"), # Fetch singal Author by id
-        new QueryCollection(name: "collection_query"), # Fetch all Author
+        new QueryCollection(name: "item"), # Fetch singal customer by id
+        new QueryCollection(name: "collection_query"), # Fetch all customers
+        new Mutation(
+            name: "create",               // Create Customer
+            description: "Create a new customer", 
+            input: CustomerInput::class,           // Input class for the mutation
+            output: Customer::class,               // Output class (the Customer entity)
+        ),
+        new Mutation(
+            name: "update",               // Update Customer by id 
+            description: "Update a new customer",  
+            input: CustomerInput::class,           // Input class for the mutation
+            output: Customer::class,               // Output class (the Customer entity)
+        ),
+        new Mutation(
+            name: "update",               // Update Author by id 
+            description: "Update a customer",  
+            input: AuthorInput::class,           // Input class for the mutation
+            output: Author::class,               // Output class (the Author entity)
+        ),
+        new Mutation(
+            name: "delete",
+            description: "Delete a customer",
+        ),
     ]
 
 )]
