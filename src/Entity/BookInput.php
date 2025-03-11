@@ -1,6 +1,6 @@
 <?php
 
-namespace App\GraphQL;
+namespace App\Entity;
 
 use ApiPlatform\Metadata\GraphQl\Argument;
 use Symfony\Component\Validator\Constraints as Assert;
