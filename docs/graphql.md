@@ -41,7 +41,7 @@ mutation CreateAuthor($firstName: String!, $lastName: String!) {
 }
 ```
 #### Query: Update Author
-graphqp```
+```graphql
 mutation UpdateAuthor($id: ID!, $firstName: String!, $lastName: String!, $clientMutationId: String!) {
   updateAuthor(input: {id: $id, firstName: $firstName, lastName: $lastName, clientMutationId: $clientMutationId}) {
     clientMutationId
