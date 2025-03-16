@@ -16,12 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
         new QueryCollection(name: "collection_query"), # Fetch all users
         new Mutation(
             name: "create",               // Create Customer
+            validationContext: ['groups' => ['create']],
             description: "Create a new user", 
-            input: UserInput::class,           // Input class for the mutation
-        ),
-        new Mutation(
-            name: "update",               // Update Customer by id 
-            description: "Update a new user",  
             input: UserInput::class,           // Input class for the mutation
         ),
         new Mutation(
@@ -44,12 +40,20 @@ class User
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(groups: ['create'], message: "Name is required.")]
+    #[Assert\Length(min: 3, max: 50, groups: ['create'], 
+        minMessage: "Name must be at least {{ limit }} characters long.",
+        maxMessage: "Name cannot be longer than {{ limit }} characters."
+    )]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
+    #[Assert\NotBlank(groups: ['create'], message: "Email is required.")]
+    #[Assert\Email(groups: ['create'], message: "Invalid email format.")]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Url(groups: ['create'], message: "Invalid avatar URL.")]
     private ?string $avatarUrl = null;
 
     public function getId(): ?int

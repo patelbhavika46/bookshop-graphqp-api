@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GraphQl\QueryCollection;
+use ApiPlatform\Metadata\GraphQl\Mutation;
 use App\Repository\BookRepository;
+use App\GraphQL\BookInput;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,6 +15,20 @@ use Doctrine\ORM\Mapping as ORM;
     graphQlOperations: [
         new QueryCollection(name: "item"),       # Fetch a single Book by ID
         new QueryCollection(name: "collection_query"), # Fetch all Book
+        new Mutation(
+            name: "create",               // Create Book
+            description: "Create an author", 
+            input: BookInput::class,           // Input class for the mutation
+        ),
+        new Mutation(
+            name: "update",               // Update Book by id 
+            description: "Update an author",  
+            input: BookInput::class,           // Input class for the mutation
+        ),
+        new Mutation(
+            name: "delete",               // Delete Book by id 
+            description: "Delete an author",
+        )
     ]
 
 )]
